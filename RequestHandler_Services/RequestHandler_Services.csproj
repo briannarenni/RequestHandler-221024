@@ -1,9 +1,8 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <ItemGroup>
-    <ProjectReference Include="..\RequestHandler_Data\RequestHandler_Data.csproj" />
     <ProjectReference Include="..\RequestHandler_Logic\RequestHandler_Logic.csproj" />
-    <ProjectReference Include="..\RequestHandler_Services\RequestHandler_Services.csproj" />
+    <ProjectReference Include="..\RequestHandler_Data\RequestHandler_Data.csproj" />
   </ItemGroup>
 
   <PropertyGroup>

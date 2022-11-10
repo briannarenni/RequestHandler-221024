@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RequestHandler_Data", "Requ
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RequestHandler_Logic", "RequestHandler_Logic\RequestHandler_Logic.csproj", "{CECE7280-4C95-4F44-9DFD-10B57BE3F39F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RequestHandler_Services", "RequestHandler_Services\RequestHandler_Services.csproj", "{89C0C227-ABCC-443D-A603-D68E06A82BDE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -30,5 +32,9 @@ Global
 		{CECE7280-4C95-4F44-9DFD-10B57BE3F39F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CECE7280-4C95-4F44-9DFD-10B57BE3F39F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CECE7280-4C95-4F44-9DFD-10B57BE3F39F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{89C0C227-ABCC-443D-A603-D68E06A82BDE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{89C0C227-ABCC-443D-A603-D68E06A82BDE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{89C0C227-ABCC-443D-A603-D68E06A82BDE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{89C0C227-ABCC-443D-A603-D68E06A82BDE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
