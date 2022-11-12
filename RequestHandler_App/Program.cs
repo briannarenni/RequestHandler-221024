@@ -1,2 +1,14 @@
-﻿// See https://aka.ms/new-console-template for more information
-Console.WriteLine("Hello, World!");
+﻿using System;
+
+namespace RequestHandler_App
+{
+
+    class Program
+    {
+        public static void Main(String[] args)
+        {
+
+
+        }
+    }
+}
