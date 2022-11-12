@@ -8,6 +8,9 @@ namespace RequestHandler_Logic
 {
     public class Employee
     {
+        // any special fields?
+
+        public Employee() { }
 
     }
 }

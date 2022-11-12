@@ -8,6 +8,9 @@ namespace RequestHandler_Logic
 {
     public class Manager
     {
+        // any special fields?
+
+        public Manager() {}
 
     }
 }
