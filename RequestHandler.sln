@@ -3,21 +3,21 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RequestHandler_App", "RequestHandler_App\RequestHandler_App.csproj", "{BDF195C7-B6B5-4B61-89DA-C910766F2147}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RequestHandler_App", "RequestHandler_App\RequestHandler_App.csproj", "{BDF195C7-B6B5-4B61-89DA-C910766F2147}"
+	ProjectSection(ProjectDependencies) = postProject
+		{834C232A-3F93-4EE6-93AA-ABAA6359DE64} = {834C232A-3F93-4EE6-93AA-ABAA6359DE64}
+	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RequestHandler_Data", "RequestHandler_Data\RequestHandler_Data.csproj", "{834C232A-3F93-4EE6-93AA-ABAA6359DE64}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RequestHandler_Data", "RequestHandler_Data\RequestHandler_Data.csproj", "{834C232A-3F93-4EE6-93AA-ABAA6359DE64}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RequestHandler_Logic", "RequestHandler_Logic\RequestHandler_Logic.csproj", "{CECE7280-4C95-4F44-9DFD-10B57BE3F39F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RequestHandler_Logic", "RequestHandler_Logic\RequestHandler_Logic.csproj", "{CECE7280-4C95-4F44-9DFD-10B57BE3F39F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RequestHandler_Services", "RequestHandler_Services\RequestHandler_Services.csproj", "{89C0C227-ABCC-443D-A603-D68E06A82BDE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RequestHandler_Services", "RequestHandler_Services\RequestHandler_Services.csproj", "{89C0C227-ABCC-443D-A603-D68E06A82BDE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
-	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{BDF195C7-B6B5-4B61-89DA-C910766F2147}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -36,5 +36,11 @@ Global
 		{89C0C227-ABCC-443D-A603-D68E06A82BDE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{89C0C227-ABCC-443D-A603-D68E06A82BDE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{89C0C227-ABCC-443D-A603-D68E06A82BDE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {7F1788FA-9CDE-4580-8E28-4A29DE0854E5}
 	EndGlobalSection
 EndGlobal

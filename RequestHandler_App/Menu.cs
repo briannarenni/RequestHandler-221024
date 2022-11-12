@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RequestHandler_Services
+namespace RequestHandler_App
 {
-    public class Register
+    public class Menu
     {
 
     }
