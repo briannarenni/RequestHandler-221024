@@ -11,46 +11,28 @@ namespace RequestHandler_Data
 {
     public class AccountRepo : AccountDB
     {
-        private string connectionString;
+        string connectionString = File.ReadAllText("../../connection-strings/request-DB.txt");
 
-        public AccountRepo(string connectionString)
+        public bool createUserAcc()
         {
-            this.connectionString = connectionString;
+            using SqlConnection connection = new SqlConnection(connectionString);
+            connection.Open();
+
+            // string cmdText = "SELECT Username, Password FROM Users WHERE Username = @username";
+
+            // using SqlCommand command = new SqlCommand(cmdText, connection);
+
+            // command.Parameters.AddWithValue("@email", email);
+            // command.Parameters.AddWithValue("@password", password);
+            // command.Parameters.AddWithValue("@role", role);
+
+            // command.ExecuteNonQuery();
+
+
+            connection.Close();
+
+            return true;
         }
-
-        public bool getOpenTickets(string username)
-        {
-            // public List<Ticket> GetOpenTickets()
-            {
-                // List<Ticket> tickets = new List<Ticket>();
-
-                using SqlConnection connection = new SqlConnection(connectionString);
-                connection.Open();
-
-                // int ticketNum, string amount, string description, bool isPending, int employeeId, string approvedBy
-
-                // string cmdText = "SELECT TicketNum, Amount, Description, isPending, Name, ApprovedBy, EmployeeId FROM Project1.Tickets " +
-                //     "JOIN Project1.Users ON EmployeeId = UserId " +
-                //     "WHERE ApprovedBy IS NULL";
-
-                // using SqlCommand cmd = new(cmdText, connection);
-
-                // using SqlDataReader reader = cmd.ExecuteReader();
-
-                // while (reader.Read())
-                // {
-
-
-                // }
-
-                // connection.Close();
-
-                // if (tickets != null) return tickets;
-                // else return null;
-
-            }
-        }
-
 
 
 

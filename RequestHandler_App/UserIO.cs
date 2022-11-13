@@ -1,19 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-
-namespace RequestHandler_Logic
+namespace RequestHandler_Services
 {
-    public class Manager
+    public class userIO // maybe userIO and TicketIO??
     {
-        // any special fields?
-
-        public Manager() {}
 
     }
 }
