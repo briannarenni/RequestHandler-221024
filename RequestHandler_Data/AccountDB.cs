@@ -9,10 +9,9 @@ using System.Threading.Tasks;
 
 namespace RequestHandler_Data
 {
-    public interface IRepo
+    public interface AccountDB
     {
 
-        List<Ticket>getOpenTickets();
-
+        // add Account SQL methods
     }
 }

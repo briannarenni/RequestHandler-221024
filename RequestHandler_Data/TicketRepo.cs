@@ -9,11 +9,11 @@ using System.Threading.Tasks;
 
 namespace RequestHandler_Data
 {
-    public class SQLRepo : IRepo
+    public class TicketRepo : TicketDB
     {
         private string connectionString;
 
-        public SQLRepo(string connectionString)
+        public TicketRepo(string connectionString)
         {
             this.connectionString = connectionString;
         }
@@ -39,7 +39,7 @@ namespace RequestHandler_Data
 
                 // while (reader.Read())
                 // {
-                //     // TODO: fetch tickets
+                //  TODO: fetch tickets
 
                 // }
 
