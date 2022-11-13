@@ -8,11 +8,28 @@ namespace RequestHandler_Logic
 {
     public class Ticket
     {
-        // ticket_id (IDENT PK)
-        // submitted_on (DATETIME DEFAULT CURRENT_TIMESTAMP)
-        // submitted_by (UNIQUE )
-        // status (DEFAULT NULL, 0 denied, 1 approved)
-        // dollar_amount (MONEY)
-        // description (will be Travel, Food, Lodging or Other)
+        int ticketId { get; set; }
+        DateTime submittedOn { get; set; } // DateTime myTime = DateTime.Parse(myString);
+        string submittedBy { get; set; }
+        decimal requestedAmount { get; set; }
+        string desc { get; set; } // number options
+        string status { get; set; } // null = pending
+
+        public Ticket() {}
+
+        public Ticket(DateTime submitOn, string submittedBy, decimal amount, string desc)
+            {
+                this.submittedOn = submitOn;
+                this.submittedBy = submittedBy;
+                this.requestedAmount = amount;
+                this.desc = desc;
+            }
+
+        // Methods
+
+
+
+
+
     }
 }
