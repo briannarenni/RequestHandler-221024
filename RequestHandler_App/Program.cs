@@ -17,9 +17,17 @@ namespace RequestHandler_App
         {
             IRepo accRepo = new AccountRepo();
             IRepo ticketRepo = new TicketRepo();
+            string username;
+            string password;
 
-            int userChoice = MainMenu.getMenuChoice();
-            Console.WriteLine(userChoice);
+            // int userChoice = MainMenu.getMenuChoice();
+            // Console.WriteLine(userChoice);
+
+            username = MainMenu.getUsername();
+            var existingUser = AccountRepo.checkUsername(username);
+            Console.WriteLine(existingUser);
+
+
 
 
         }
