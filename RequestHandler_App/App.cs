@@ -15,31 +15,9 @@ namespace RequestHandler_App
         string username;
         string password;
 
-        // ! MainMenu
-        int userChoice = MainMenu.getMenuChoice();
-        // * if Login (1)
-        // username = MainMenu.getUsername();
-        // bool existingUser = AccountRepo.checkUsername(username);
-        // ? if true
-        // password = MainMenu.getPassword();
-        // User account = new User(username, password)
 
-        // ? if false
-        // "Username not found. Please choose an option: "
-        // "1: Register"
-        // "2: Login with a different username"
-        // Loop back to top
 
-        // * if Register (2)
-        // username = MainMenu.getUsername();
-        // password = MainMenu.getPassword();
-        // existingUser = AccountRepo.checkUsername(username)
-        // ? if false
-        // continue
-        // User account = new User(username, password)
-        // ? if true
-        // "Error, username already exists."
-        // show Login
+
 
 
 
