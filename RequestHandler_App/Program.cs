@@ -4,6 +4,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using RequestHandler_Data;
 
 namespace RequestHandler_App
 {
@@ -12,7 +13,9 @@ namespace RequestHandler_App
     {
         public static void Main(String[] args)
         {
-            Console.WriteLine("Hello World");
+            IRepo repo = new AccountRepo();
+
+
 
         }
     }

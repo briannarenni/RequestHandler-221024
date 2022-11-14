@@ -9,6 +9,6 @@ namespace RequestHandler_Services
 {
     public class Register
     {
-
+        // handles register logic
     }
 }

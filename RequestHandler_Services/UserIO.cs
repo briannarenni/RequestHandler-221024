@@ -7,8 +7,9 @@ using System.Threading.Tasks;
 
 namespace RequestHandler_Services
 {
-    public class userIO // maybe userIO and TicketIO??
+    public class userIO
     {
+        // handles login/register UI
 
     }
 }

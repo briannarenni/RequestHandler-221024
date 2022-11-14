@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace RequestHandler_Data
 {
-    public class AccountRepo : AccountDB
+    public class AccountRepo : IRepo
     {
         string connectionString = File.ReadAllText("../../connection-strings/request-DB.txt");
 
