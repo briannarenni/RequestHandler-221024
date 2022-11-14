@@ -1,15 +1,14 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RequestHandler_Services
+namespace RequestHandler_IO
 {
-    public class userIO
+    public class ManagerMenu
     {
-        // handles login/register UI
-
+        // handles login logic
     }
 }

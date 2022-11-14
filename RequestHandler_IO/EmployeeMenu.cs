@@ -5,10 +5,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RequestHandler_Services
+namespace RequestHandler_IO
 {
-    public class ticketIO
+    public class EmployeeMenu
     {
-        // handles ticket UI
+        // handles login logic
     }
 }

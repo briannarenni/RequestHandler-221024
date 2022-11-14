@@ -9,13 +9,16 @@ namespace RequestHandler_Logic
 {
     public class Ticket
     {
-        int ticketId { get; set; }
-        DateTime submittedOn { get; set; } // DateTime myTime = DateTime.Parse(myString);
+
         string submittedBy { get; set; }
         decimal requestedAmount { get; set; }
-        string desc { get; set; } // number options
-        string status { get; set; } // null = pending
+        string desc { get; set; } // travel, lodging, food, other
+        //  filled from DB
+        int ticketId { get; set; }
+        DateTime submittedOn { get; set; } // DateTime myTime = DateTime.Parse(myString);
+        string status { get; set; } // approved/denied
 
+        // Constructors
         public Ticket() {}
 
         public Ticket(DateTime submitOn, string submittedBy, decimal amount, string desc)
