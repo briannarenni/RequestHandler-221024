@@ -5,6 +5,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using RequestHandler_Data;
+using RequestHandler_IO;
+using RequestHandler_Logic;
 
 namespace RequestHandler_App
 {
@@ -13,8 +15,11 @@ namespace RequestHandler_App
     {
         public static void Main(String[] args)
         {
-            IRepo repo = new AccountRepo();
+            IRepo accRepo = new AccountRepo();
+            IRepo ticketRepo = new TicketRepo();
 
+            int userChoice = MainMenu.getMenuChoice();
+            Console.WriteLine(userChoice);
 
 
         }

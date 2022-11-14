@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using RequestHandler_Data;
+using RequestHandler_Logic;
+using RequestHandler_IO;
 
 
 namespace RequestHandler_App
@@ -13,11 +16,10 @@ namespace RequestHandler_App
         string password;
 
         // ! MainMenu
-        // getMenuChoice() - returns int
-
+        int userChoice = MainMenu.getMenuChoice();
         // * if Login (1)
         // username = MainMenu.getUsername();
-        // existingUser = checkUsername(username)
+        // bool existingUser = AccountRepo.checkUsername(username);
         // ? if true
         // password = MainMenu.getPassword();
         // User account = new User(username, password)
@@ -31,7 +33,7 @@ namespace RequestHandler_App
         // * if Register (2)
         // username = MainMenu.getUsername();
         // password = MainMenu.getPassword();
-        // existingUser = checkUsername(username)
+        // existingUser = AccountRepo.checkUsername(username)
         // ? if false
         // continue
         // User account = new User(username, password)
