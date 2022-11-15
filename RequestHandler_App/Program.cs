@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -17,20 +18,19 @@ namespace RequestHandler_App
         {
             IRepo accRepo = new AccountRepo();
             IRepo ticketRepo = new TicketRepo();
-            string username;
-            string password;
 
-            // ! MainMenu
-           User currUser = MainMenu.startMenu();
+            // login/register acc
+            User currUser = MainMenu.startMenu();
+            ArrayList currUserInfo = new ArrayList();
 
+            // Update user info from DB
+            (int, int) setCurrUserInfo = AccountRepo.updateUserInfo(currUser.username);
+            // Attach to current User
+            currUser.updateUserInfo(setCurrUserInfo);
+            Console.WriteLine($"{currUser.username} logged in successfully.");
 
-
-
-
-
-            // TODO: Get user info from DB, save to account
-            // account.getUser();
-            // print to console
+            // Show Account Information
+            currUser.showUserInfo();
 
 
         }

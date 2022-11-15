@@ -12,6 +12,9 @@ namespace RequestHandler_Data
     public interface IRepo
     {
 
-        // any methods from AccountRepo and Ticket Repo should go here!
+        // // any methods from AccountRepo and Ticket Repo should go here!
+        // bool checkUsername();
+        // bool checkPassword();
+        // void addUser();
     }
 }

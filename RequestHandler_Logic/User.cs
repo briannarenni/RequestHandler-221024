@@ -11,13 +11,11 @@ namespace RequestHandler_Logic
 {
     public class User
     {
-        // Fields
-        string username { get; set; }
+        public int userId { get; set; } // Filled by DB
+        public string username { get; set; }
         string password { get; set; }
-        bool isManager { get; set; }
-        //  filled from DB
-        int userId { get; set; }
-        int pendingTickets { get; set; }
+        public int pendingTickets { get; set; } // Filled by DB
+        bool isManager { get; set; } // Filled by DB
 
         // Constructors
         public User() { }
@@ -31,21 +29,17 @@ namespace RequestHandler_Logic
         }
 
         // METHODS
-        public void setUserDetails()
+        public void updateUserInfo((int, int) details)
         {
-            // return all fields in ArrayList
-            ArrayList userDetails = new ArrayList();
-            //  string username
-            // string password
-            // bool isManager
-            // int userId
-            // int pendingTickets
-
-
+           this.userId = details.Item1;
+           this.pendingTickets = details.Item2;
         }
 
-        public void showUserDetails()
+        public void showUserInfo()
         {
+            Console.WriteLine($"User ID: {this.userId}");
+            Console.WriteLine($"Username: {this.username}");
+            Console.WriteLine($"Pending Tickets: {this.pendingTickets}");
 
         }
 
