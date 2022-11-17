@@ -12,27 +12,24 @@ namespace RequestHandler_App
 {
     public class App
     {
-        string username;
-        string password;
 
-
-
-
-
-
-
+        // * Show Account Information
+        // currUser.showUserInfo();
 
         // *  if Employee
         // EmployeeMenu()
         // 1: Submit New Request
         // 2: View Submitted Requests
-        // 3: Log Out
+        // 3: View Account Info
+        // 4: Log Out
 
-        // * if Manager
-        // ManagerMenu()
-        // 1: View Pending Requests
-        // 2: View Processed Requests (by user)
-        // 3: Log Out
+
+
+
+
+
+
+
 
     }
 }
