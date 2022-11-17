@@ -16,7 +16,6 @@ namespace RequestHandler_Data
 
         static string connectionString = conFile.ReadToEnd();
 
-        // TODO: checkUsername() returns bool
         public static bool checkUsername(string username)
         {
             using SqlConnection connection = new SqlConnection(connectionString);
@@ -54,6 +53,27 @@ namespace RequestHandler_Data
             connection.Close();
         }
 
+        public static bool getPerms(string username)
+        {
+            bool isManager = false;
+            using SqlConnection connection = new SqlConnection(connectionString);
+            connection.Open();
+
+            string cmdText = @"SELECT is_manager FROM [User] WHERE username = @username;";
+            using SqlCommand command = new SqlCommand(cmdText, connection);
+            command.Parameters.AddWithValue("@username", username);
+
+            using SqlDataReader reader = command.ExecuteReader();
+            while (reader.Read())
+            {
+                int isManagerInt = Convert.ToInt32(reader["is_manager"]);
+                isManager = isManagerInt % 2 != 0;
+
+            }
+            return isManager;
+            connection.Close();
+        }
+
         public static void addUser(string username, string password)
         {
             using SqlConnection connection = new SqlConnection(connectionString);
@@ -70,16 +90,17 @@ namespace RequestHandler_Data
             connection.Close();
         }
 
-        public static (int, int) updateUserInfo(string username)
+        public static (int, int, bool) updateUserInfo(string username)
         {
             // add id and pending tickets to User
             int userId = 0;
             int pendingTickets = 0;
+            bool isManager = false;
 
             using SqlConnection connection = new SqlConnection(connectionString);
             connection.Open();
 
-            string cmdText = @"SELECT user_id, pending_tickets FROM [User] WHERE username = @username;";
+            string cmdText = @"SELECT user_id, pending_tickets, is_manager FROM [User] WHERE username = @username;";
             using SqlCommand command = new SqlCommand(cmdText, connection);
             command.Parameters.AddWithValue("@username", username);
 
@@ -88,8 +109,10 @@ namespace RequestHandler_Data
             {
                 userId = Convert.ToInt32(reader["user_id"]);
                 pendingTickets = (reader["pending_tickets"] == DBNull.Value) ? default(int) : (int)reader["pending_tickets"];
+                int isManagerInt = Convert.ToInt32(reader["is_manager"]);
+                isManager = isManagerInt % 2 != 0;
             }
-            return (userId, pendingTickets);
+            return (userId, pendingTickets, isManager);
             connection.Close();
         }
     }

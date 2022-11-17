@@ -18,34 +18,52 @@ namespace RequestHandler_App
         {
             IRepo accRepo = new AccountRepo();
             IRepo ticketRepo = new TicketRepo();
+            Console.Clear();
 
-            // login/register acc
+            // ! Main Menu
             User currUser = MainMenu.startMenu();
-            ArrayList currUserInfo = new ArrayList();
-
+            Console.WriteLine();
             // Update user info from DB
-            (int, int) setCurrUserInfo = AccountRepo.updateUserInfo(currUser.username);
+            (int, int, bool) setCurrUserInfo = AccountRepo.updateUserInfo(currUser.username);
             // Attach to current User
             currUser.updateUserInfo(setCurrUserInfo);
+            int userId = currUser.userId;
+            string username = currUser.username;
+            bool perms = currUser.isManager;
             Console.WriteLine($"{currUser.username} logged in successfully.");
+            Console.WriteLine();
 
 
 
-            // *  if Employee
-            // EmployeeMenu()
-            // 1: Submit New Request
-            // 2: View Submitted Requests
-            // 3: View Account Info
-            // 4: Log Out
+            // ! Employee Menu
+            if (!perms)
+            {
+                bool showMenu = true;
+                while (showMenu)
+                {
+                    showMenu = EmployeeMenu.empDashboard(currUser);
+                    if (!showMenu) Environment.Exit(0);
 
-            // * if Manager
-            // ManagerMenu()
-            // 1: View Pending Requests
-            // 2: View All Requests
-            // 3: View Account Info
-            // 4: Log Out
+                }
+
+            }
+            // TODO:
+            // ? Not capturing perms to currUser
+
+            // else if (perms) // ! Manager Menu
+            // {
+            //    bool showMenu = true;
+            //     while (showMenu)
+            //     {
+            //         showMenu = EmployeeMenu.empDashboard(currUser);
+            //         if (!showMenu) Environment.Exit(0);
+
+            //     }
+
+            // }
 
 
-        }
+
+        } // end Main
     }
 }

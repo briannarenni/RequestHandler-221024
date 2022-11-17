@@ -18,40 +18,42 @@ namespace RequestHandler_IO
 
             Console.WriteLine();
             Console.WriteLine("Employee Request Portal - Main Menu");
+            Console.WriteLine();
             Console.WriteLine("Please choose an option:");
 
             while (choiceLoop)
             {
                 string userChoice;
+
+                Console.WriteLine("1: Login (Existing User)");
+                Console.WriteLine("2: Register (New User)");
+
+                userChoice = Console.ReadLine();
+                bool emptyStr = string.IsNullOrEmpty(userChoice);
+
+                if ((!emptyStr) && userChoice == "1" || userChoice == "2")
                 {
-                    Console.WriteLine("1: Login (Existing User)");
-                    Console.WriteLine("2: Register (New User)");
+                    Console.Clear();
+                    choiceLoop = false;
 
-                    userChoice = Console.ReadLine();
-                    bool emptyStr = string.IsNullOrEmpty(userChoice);
-
-                    if ((!emptyStr) && userChoice == "1" || userChoice == "2")
+                    if (userChoice == "1")
                     {
-                        choiceLoop = false;
-
-                        if (userChoice == "1")
-                        {
-                            var loginInfo = MainMenu.Login();
-                            User currUser = new User(loginInfo.Item1, loginInfo.Item2);
-                            return currUser;
-                        }
-                        else if (userChoice == "2")
-                        {
-                            var registerInfo = MainMenu.Register();
-                            User currUser = new User(registerInfo.Item1, registerInfo.Item2);
-                            return currUser;
-                        }
+                        var loginInfo = MainMenu.Login();
+                        User currUser = new User(loginInfo.Item1, loginInfo.Item2, loginInfo.Item3);
+                        return currUser;
                     }
-                    else
+                    else if (userChoice == "2")
                     {
-                        Console.WriteLine("Error: Please enter a number.");
+                        var registerInfo = MainMenu.Register();
+                        User currUser = new User(registerInfo.Item1, registerInfo.Item2);
+                        return currUser;
                     }
                 }
+                else
+                {
+                    Console.WriteLine("Error: Please enter a number.");
+                }
+
             }
             Console.WriteLine("If you can see this you messed up.");
             return new User();
@@ -72,12 +74,14 @@ namespace RequestHandler_IO
         }
 
         // ! LOGIN
-        public static (string, string) Login()
+        public static (string, string, bool) Login()
         {
+            Console.WriteLine("Login - Existing User");
             bool usernameLoop = true;
             bool passwordLoop = true;
             string username = "";
             string password = "";
+            bool perms = false;
 
             while (usernameLoop)
             {
@@ -94,6 +98,7 @@ namespace RequestHandler_IO
                         if (matchPassword)
                         {
                             passwordLoop = false;
+                            perms = AccountRepo.getPerms(username);
                         }
                         else
                         {
@@ -106,15 +111,19 @@ namespace RequestHandler_IO
                     Console.WriteLine("Username not found.");
                 }
             }
-            return (username, password);
+            Console.WriteLine(perms);
+            return (username, password, perms);
         }
 
         // ! REGISTER
         public static (string, string) Register()
         {
+            Console.WriteLine("Register - New Username");
             bool registerLoop = true;
             string username = "";
             string password = "";
+            bool perms = false;
+
             while (registerLoop)
             {
                 username = MainMenu.getUsername();
@@ -122,6 +131,9 @@ namespace RequestHandler_IO
                 if (!existingUser)
                 {
                     password = MainMenu.getPassword();
+
+
+                    perms = AccountRepo.getPerms(username);
 
                     AccountRepo.addUser(username, password);
                     registerLoop = false;
