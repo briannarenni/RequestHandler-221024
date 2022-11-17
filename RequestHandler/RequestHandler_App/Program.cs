@@ -21,22 +21,24 @@ namespace RequestHandler_App
             Console.Clear();
 
             // ! Main Menu
-            User currUser = MainMenu.startMenu();
+            User currUser = MainMenu.startMenu(); // * WHAT
             Console.WriteLine();
             // Update user info from DB
-            (int, int, bool) setCurrUserInfo = AccountRepo.updateUserInfo(currUser.username);
-            // Attach to current User
-            currUser.updateUserInfo(setCurrUserInfo);
-            int userId = currUser.userId;
+            (int, int, bool) tieUserInfo = AccountRepo.getUserInfo(currUser.username);
             string username = currUser.username;
-            bool perms = currUser.isManager;
+
+
+            // Attach to current User
+            currUser.updateUserInfo(tieUserInfo);
+            int userId = currUser.userId;
+
+
             Console.WriteLine($"{currUser.username} logged in successfully.");
-            Console.WriteLine();
+            Console.WriteLine(currUser.isManager);
 
 
-
-            // ! Employee Menu
-            if (!perms)
+            // ! Employee Menu //WHAT
+            if (!currUser.isManager)
             {
                 bool showMenu = true;
                 while (showMenu)
@@ -50,17 +52,17 @@ namespace RequestHandler_App
             // TODO:
             // ? Not capturing perms to currUser
 
-            // else if (perms) // ! Manager Menu
-            // {
-            //    bool showMenu = true;
-            //     while (showMenu)
-            //     {
-            //         showMenu = EmployeeMenu.empDashboard(currUser);
-            //         if (!showMenu) Environment.Exit(0);
+            else if (currUser.isManager) // ! Manager Menu
+            {
+                bool showMenu = true;
+                while (showMenu)
+                {
+                    showMenu = EmployeeMenu.empDashboard(currUser);
+                    if (!showMenu) Environment.Exit(0);
 
-            //     }
+                }
 
-            // }
+            }
 
 
 
