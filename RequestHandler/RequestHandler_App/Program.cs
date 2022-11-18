@@ -21,7 +21,7 @@ namespace RequestHandler_App
             Console.Clear();
 
             // ! Main Menu
-            User currUser = MainMenu.startMenu(); // * WHAT
+            User currUser = MainMenu.startMenu();
             Console.WriteLine();
             // Update user info from DB
             (int, int, bool) tieUserInfo = AccountRepo.getUserInfo(currUser.username);
@@ -37,7 +37,7 @@ namespace RequestHandler_App
             Console.WriteLine(currUser.isManager);
 
 
-            // ! Employee Menu //WHAT
+            // ! Employee Menu
             if (!currUser.isManager)
             {
                 bool showMenu = true;
@@ -47,7 +47,6 @@ namespace RequestHandler_App
                     if (!showMenu) Environment.Exit(0);
 
                 }
-
             }
             // TODO:
             // ? Not capturing perms to currUser
@@ -57,7 +56,7 @@ namespace RequestHandler_App
                 bool showMenu = true;
                 while (showMenu)
                 {
-                    showMenu = EmployeeMenu.empDashboard(currUser);
+                    showMenu = ManagerMenu.empDashboard(currUser);
                     if (!showMenu) Environment.Exit(0);
 
                 }
