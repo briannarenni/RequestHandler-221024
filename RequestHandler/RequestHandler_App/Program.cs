@@ -20,22 +20,17 @@ namespace RequestHandler_App
             IRepo ticketRepo = new TicketRepo();
             Console.Clear();
 
-            // ! Main Menu
+            // Main Menu creates current user
             User currUser = MainMenu.startMenu();
             Console.WriteLine();
-            // Update user info from DB
-            (int, int, bool) tieUserInfo = AccountRepo.getUserInfo(currUser.username);
-            string username = currUser.username;
 
+            // Update user info from DB
+            (int, bool) tieUserInfo = AccountRepo.getUserInfo(currUser.username);
+            string username = currUser.username;
 
             // Attach to current User
             currUser.updateUserInfo(tieUserInfo);
             int userId = currUser.userId;
-
-
-            Console.WriteLine($"{currUser.username} logged in successfully.");
-            Console.WriteLine(currUser.isManager);
-
 
             // ! Employee Menu
             if (!currUser.isManager)
@@ -48,15 +43,13 @@ namespace RequestHandler_App
 
                 }
             }
-            // TODO:
-            // ? Not capturing perms to currUser
 
             else if (currUser.isManager) // ! Manager Menu
             {
                 bool showMenu = true;
                 while (showMenu)
                 {
-                    showMenu = ManagerMenu.empDashboard(currUser);
+                    showMenu = ManagerMenu.mgrDashboard(currUser);
                     if (!showMenu) Environment.Exit(0);
 
                 }

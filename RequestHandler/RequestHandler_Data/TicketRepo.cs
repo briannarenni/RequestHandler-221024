@@ -12,48 +12,48 @@ namespace RequestHandler_Data
 {
     public class TicketRepo : IRepo
     {
-        static string connectionString = File.ReadAllText("/Users/briannarene/_code/_tools/connection-strings/request-DB.txt");
+        static StreamReader conFile = new System.IO.StreamReader("/Users/briannarene/_code/_tools/connection-strings/request-DB.txt");
 
-        public void getPendingTickets()
+        static string connectionString = conFile.ReadToEnd();
+
+        // Methods
+        public static void createTicket()
         {
-            // using SqlConnection connection = new SqlConnection(connectionString);
-            // connection.Open();
+            using SqlConnection connection = new SqlConnection(connectionString);
+            connection.Open();
+            // string cmdText = @"INSERT INTO [User] ([username], [password])
+            //     VALUES (@username, @password);";
 
-            // string cmdText = @"SELECT * FROM [User] WHERE username = @username;";
             // using SqlCommand command = new SqlCommand(cmdText, connection);
 
-            // command.Parameters.AddWithValue("@email", email);
+            // command.Parameters.AddWithValue("@username", username);
             // command.Parameters.AddWithValue("@password", password);
-            // command.Parameters.AddWithValue("@role", role);
 
             // command.ExecuteNonQuery();
-
-
             // connection.Close();
-
         }
 
-        public static bool createTicket()
+        public static (int, DateTime) getTicketInfo(int userId)
         {
-            // using SqlConnection connection = new SqlConnection(connectionString);
-            // connection.Open();
+            using SqlConnection connection = new SqlConnection(connectionString);
+            connection.Open();
 
-            // string cmdText = "ADD";
+            string cmdText = @"SELECT ticket_id, submitted_by FROM [Ticket] WHERE submitted_by = @userId;";
+            using SqlCommand command = new SqlCommand(cmdText, connection);
+            command.Parameters.AddWithValue("@userId", userId);
+            SqlDataReader reader = command.ExecuteReader();
 
-            // using SqlCommand command = new SqlCommand(cmdText, connection);
+            int ticketId = 0;
+            DateTime submittedOn = new DateTime();
 
-            // command.Parameters.AddWithValue("@param", param);
-
-            // command.ExecuteNonQuery();
-
-
-            // connection.Close();
-
-            return false;
+            while (reader.Read())
+            {
+                ticketId = Convert.ToInt32(reader["ticket_id"]);
+                submittedOn = Convert.ToDateTime(reader["submitted_on"]);
+            }
+            return (ticketId, submittedOn);
+            connection.Close();
         }
-
-
-
 
     }
 }

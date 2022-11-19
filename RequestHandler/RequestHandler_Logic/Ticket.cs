@@ -9,30 +9,59 @@ namespace RequestHandler_Logic
 {
     public class Ticket
     {
-
-        string submittedBy { get; set; }
-        decimal requestedAmount { get; set; }
-        string desc { get; set; } // travel, lodging, food, other
-        //  filled from DB
         int ticketId { get; set; }
-        DateTime submittedOn { get; set; } // DateTime myTime = DateTime.Parse(myString);
-        string status { get; set; } // approved/denied
+        DateTime submittedOn { get; set; }
+        int submittedBy { get; set; }
+        string employeeName { get; set; }
+        string status { get; set; }
+        decimal amount { get; set; }
+        string desc { get; set; }
+
+        public Dictionary<int, string> descOptions = new Dictionary<int, string>()
+        {
+            {1, "Travel"},
+            {2, "Lodging"},
+            {3, "Food"},
+            {4, "Other"},
+        };
 
         // Constructors
-        public Ticket() {}
+        public Ticket() { }
 
-        public Ticket(DateTime submitOn, string submittedBy, decimal amount, string desc)
-            {
-                this.submittedOn = submitOn;
-                this.submittedBy = submittedBy;
-                this.requestedAmount = amount;
-                this.desc = desc;
-            }
+        public Ticket(int userId, string username, decimal amount, string desc)
+        {
+            this.submittedBy = userId;
+            this.employeeName = username;
+            this.amount = amount;
+            this.desc = desc;
+        }
+
+        public Ticket(int ticketId, DateTime submittedOn, int userId, string username, decimal amount, string desc)
+        {
+            this.ticketId = ticketId;
+            this.submittedOn = submittedOn;
+            this.submittedBy = userId;
+            this.employeeName = username;
+            this.amount = amount;
+            this.desc = desc;
+        }
 
         // Methods
+        public void updateTicketInfo((int, DateTime) details)
+        {
+            this.ticketId = details.Item1;
+            this.submittedOn = details.Item2;
+        }
 
-
-
+        public void showTicketInfo()
+        {
+            Console.WriteLine($"Ticket ID: {this.ticketId}");
+            Console.WriteLine($"Submitted on: {this.submittedOn}");
+            Console.WriteLine($"Submitted By: {this.submittedBy}");
+            Console.WriteLine($"Status: {this.status}");
+            Console.WriteLine($"Amount requested: {this.amount}");
+            Console.WriteLine($"Request category: {this.desc}");
+        }
 
 
     }

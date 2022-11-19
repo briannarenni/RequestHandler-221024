@@ -33,19 +33,22 @@ namespace RequestHandler_IO
 
                 if ((!emptyStr) && userChoice == "1" || userChoice == "2")
                 {
-                    Console.Clear();
+                    // Console.Clear();
                     choiceLoop = false;
 
                     if (userChoice == "1")
                     {
                         var loginInfo = MainMenu.Login();
                         User currUser = new User(loginInfo.Item1, loginInfo.Item2, loginInfo.Item3);
+                        Console.WriteLine($"{currUser.username} logged in successfully.");
                         return currUser;
                     }
                     else if (userChoice == "2")
                     {
                         var registerInfo = MainMenu.Register();
                         User currUser = new User(registerInfo.Item1, registerInfo.Item2);
+                        Console.WriteLine($"{currUser.username} registered in successfully. Logging in...");
+                        Thread.Sleep(1500);
                         return currUser;
                     }
                 }
@@ -74,14 +77,14 @@ namespace RequestHandler_IO
         }
 
         // ! LOGIN
-        public static (string, string, bool) Login()
+        public static (string, string , bool) Login()
         {
             Console.WriteLine("Login - Existing User");
             bool usernameLoop = true;
             bool passwordLoop = true;
             string username = "";
             string password = "";
-            bool perms = false;
+            bool isManager = false;
 
             while (usernameLoop)
             {
@@ -98,7 +101,7 @@ namespace RequestHandler_IO
                         if (matchPassword)
                         {
                             passwordLoop = false;
-                            perms = AccountRepo.getPerms(username);
+                            isManager = AccountRepo.getPerms(username);
                         }
                         else
                         {
@@ -111,8 +114,8 @@ namespace RequestHandler_IO
                     Console.WriteLine("Username not found.");
                 }
             }
-            Console.WriteLine(perms);
-            return (username, password, perms);
+
+            return (username, password, isManager);
         }
 
         // ! REGISTER
@@ -122,7 +125,7 @@ namespace RequestHandler_IO
             bool registerLoop = true;
             string username = "";
             string password = "";
-            bool perms = false;
+            // bool perms = false;
 
             while (registerLoop)
             {
@@ -133,7 +136,7 @@ namespace RequestHandler_IO
                     password = MainMenu.getPassword();
 
 
-                    perms = AccountRepo.getPerms(username);
+                    // perms = AccountRepo.getPerms(username);
 
                     AccountRepo.addUser(username, password);
                     registerLoop = false;

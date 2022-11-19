@@ -16,6 +16,7 @@ namespace RequestHandler_Data
 
         static string connectionString = conFile.ReadToEnd();
 
+        // Methods
         public static bool checkUsername(string username)
         {
             using SqlConnection connection = new SqlConnection(connectionString);
@@ -90,17 +91,16 @@ namespace RequestHandler_Data
             connection.Close();
         }
 
-        public static (int, int, bool) updateUserInfo(string username)
+        public static (int, bool) getUserInfo(string username)
         {
             // add id and pending tickets to User
             int userId = 0;
-            int pendingTickets = 0;
             bool isManager = false;
 
             using SqlConnection connection = new SqlConnection(connectionString);
             connection.Open();
 
-            string cmdText = @"SELECT user_id, pending_tickets, is_manager FROM [User] WHERE username = @username;";
+            string cmdText = @"SELECT user_id, is_manager FROM [User] WHERE username = @username;";
             using SqlCommand command = new SqlCommand(cmdText, connection);
             command.Parameters.AddWithValue("@username", username);
 
@@ -108,11 +108,11 @@ namespace RequestHandler_Data
             while (reader.Read())
             {
                 userId = Convert.ToInt32(reader["user_id"]);
-                pendingTickets = (reader["pending_tickets"] == DBNull.Value) ? default(int) : (int)reader["pending_tickets"];
                 int isManagerInt = Convert.ToInt32(reader["is_manager"]);
+
                 isManager = isManagerInt % 2 != 0;
             }
-            return (userId, pendingTickets, isManager);
+            return (userId, isManager);
             connection.Close();
         }
     }

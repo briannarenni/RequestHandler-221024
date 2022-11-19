@@ -6,6 +6,7 @@ CREATE TABLE [dbo].[Tickets] (
     [amount]       MONEY         NULL,
     [desc]         INT           NULL
 );
+GO
 
 CREATE TABLE [dbo].[User] (
     [user_id]         INT           IDENTITY (1, 2) NOT NULL,
@@ -15,3 +16,10 @@ CREATE TABLE [dbo].[User] (
     [pending_tickets] INT           NULL,
     CONSTRAINT [PK_User] PRIMARY KEY CLUSTERED ([user_id] ASC)
 );
+GO
+
+CREATE VIEW [View.PendingTickets]
+AS SELECT *
+FROM Ticket
+WHERE [status] = 'pending'
+GO

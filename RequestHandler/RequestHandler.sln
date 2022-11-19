@@ -12,7 +12,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RequestHandler_Data", "Requ
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RequestHandler_Logic", "RequestHandler_Logic\RequestHandler_Logic.csproj", "{CECE7280-4C95-4F44-9DFD-10B57BE3F39F}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RequestHandler_Services", "RequestHandler_Services\RequestHandler_Services.csproj", "{89C0C227-ABCC-443D-A603-D68E06A82BDE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RequestHandler_IO", "RequestHandler_IO\RequestHandler_IO.csproj", "{89C0C227-ABCC-443D-A603-D68E06A82BDE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

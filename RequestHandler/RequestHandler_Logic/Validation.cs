@@ -23,7 +23,7 @@ namespace RequestHandler_Logic
 
             List<string> choices = new List<string>()
             {
-                "1", "2", "3", "4", "5"
+                "1", "2", "3", "4"
             };
 
             return (choices.Contains(userInput.Trim()));
