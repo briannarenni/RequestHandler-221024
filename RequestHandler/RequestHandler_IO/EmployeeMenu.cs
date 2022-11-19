@@ -34,11 +34,11 @@ namespace RequestHandler_IO
                 switch (empChoice)
                 {
                     case "1":
-                        // createTicket();
+                        // TicketMenu.createTicket();
                         Console.Clear();
                         return true;
                     case "2":
-                        // viewUserTickets();
+                        // TicketMenu.viewUserTickets();
                         Console.Clear();
                         return true;
                     case "3":
@@ -63,13 +63,6 @@ namespace RequestHandler_IO
         } // END dashboard
 
 
-        // TODO: Update ticket info from DB (CHANGE)
-        // (int, bool) tieUserInfo = AccountRepo.getUserInfo(currUser.username);
-        // string username = currUser.username;
-
-        // TODO: Attach to current Ticket (CHANGE)
-        // currUser.updateUserInfo(tieUserInfo);
-        // int userId = currUser.userId;
 
         // TODO: Ticket System
         public void viewUserTickets()
