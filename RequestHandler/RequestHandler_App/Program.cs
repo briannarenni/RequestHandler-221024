@@ -5,10 +5,10 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DataTablePrettyPrinter;
 using RequestHandler_Data;
 using RequestHandler_IO;
 using RequestHandler_Logic;
-using DataTablePrettyPrinter;
 
 namespace RequestHandler_App
 {
@@ -17,9 +17,9 @@ namespace RequestHandler_App
     {
         public static void Main(String[] args)
         {
+            Console.Clear();
             IRepo accRepo = new AccountRepo();
             IRepo ticketRepo = new TicketRepo();
-            Console.Clear();
 
             // Main Menu creates current user
             User currUser = MainMenu.startMenu();
@@ -36,6 +36,10 @@ namespace RequestHandler_App
             // ! Employee Menu
             if (!currUser.isManager)
             {
+                Console.ForegroundColor = ConsoleColor.DarkYellow;
+                Console.WriteLine($"Welcome, {currUser.username}");
+                Console.ResetColor();
+
                 bool showMenu = true;
                 while (showMenu)
                 {
@@ -48,6 +52,10 @@ namespace RequestHandler_App
 
             else if (currUser.isManager) // ! Manager Menu
             {
+                Console.ForegroundColor = ConsoleColor.DarkYellow;
+                Console.WriteLine($"Welcome, {currUser.username}");
+                Console.ResetColor();
+
                 bool showMenu = true;
                 while (showMenu)
                 {

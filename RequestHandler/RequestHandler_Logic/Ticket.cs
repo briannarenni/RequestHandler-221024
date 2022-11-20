@@ -18,10 +18,6 @@ namespace RequestHandler_Logic
         public double amount { get; set; }
         public string category { get; set; }
 
-        // public DataTable ticketViewer { get; set; }
-
-
-
         // Constructors
         public Ticket() { }
 

@@ -15,7 +15,7 @@ namespace RequestHandler_Data
         static StreamReader conFile = new System.IO.StreamReader("/Users/briannarene/_code/_tools/connection-strings/request-DB.txt");
         static string connectionString = conFile.ReadToEnd();
 
-        // Read Methods (getUserPending, getUserHistory, getAllRequests)
+        // Read Methods (getUserPending, getUserHistory, getAllRequests, clearPendingRequests)
         public static DataTable getTickets(string query)
         {
             using SqlConnection connection = new SqlConnection(connectionString);
@@ -39,11 +39,11 @@ namespace RequestHandler_Data
             connection.Close();
         }
 
-        public static DataTable getTickets(string query, int userId)
+        public static DataTable getTickets(string query, int id)
         {
             using SqlConnection connection = new SqlConnection(connectionString);
             using SqlCommand command = new SqlCommand(query, connection);
-            command.Parameters.AddWithValue("@userId", userId);
+            command.Parameters.AddWithValue("@id", id);
 
             connection.Open();
             using SqlDataReader reader = command.ExecuteReader();
@@ -61,6 +61,19 @@ namespace RequestHandler_Data
 
             return result;
             connection.Close();
+        }
+
+        public static bool checkPending(string query, int id)
+        {
+            using SqlConnection connection = new SqlConnection(connectionString);
+            connection.Open();
+
+            string cmdText = @"SELECT * FROM [View.PendingTickets] WHERE ticket_id = @id;";
+            using SqlCommand command = new SqlCommand(cmdText, connection);
+            command.Parameters.AddWithValue("@id", id);
+            using SqlDataReader reader = command.ExecuteReader();
+
+            return reader.HasRows;
         }
 
         // Update Methods (add/process requests)
@@ -82,43 +95,41 @@ namespace RequestHandler_Data
             connection.Close();
         }
 
-        public static void updatePendingRequests(string status, int ticketId)
+        public static bool checkPending(int ticketId)
         {
             using SqlConnection connection = new SqlConnection(connectionString);
             connection.Open();
 
-            string cmdText = @"UPDATE [Ticket] SET status = @status
-                WHERE ticket_id = @ticketId;";
+            string cmdText = @"SELECT * FROM [View.PendingTickets] WHERE ticket_id = @ticketId;";
+            using SqlCommand command = new SqlCommand(cmdText, connection);
+            command.Parameters.AddWithValue("@ticketId", ticketId);
+
+            using SqlDataReader reader = command.ExecuteReader();
+
+            return reader.HasRows;
+        }
+
+        public static void updatePendingRequest(string status, int id, string username)
+        {
+            using SqlConnection connection = new SqlConnection(connectionString);
+            connection.Open();
+
+            string cmdText = @"UPDATE [Ticket] SET
+                status = @status
+                processed_by = @username
+                WHERE ticket_id = @id;";
 
             using SqlCommand command = new SqlCommand(cmdText, connection);
 
             command.Parameters.AddWithValue("@status", status);
-            command.Parameters.AddWithValue("@ticketId", ticketId);
+            command.Parameters.AddWithValue("@id", id);
+            command.Parameters.AddWithValue("@username", username);
 
             command.ExecuteNonQuery();
             connection.Close();
         }
 
-        // public static (int, DateTime) getTicketInfo(int userId)
-        // {
-        //     using SqlConnection connection = new SqlConnection(connectionString);
-        //     connection.Open();
 
-        //     string cmdText = @"SELECT ticket_id, submitted_by FROM [Ticket] WHERE submitted_by = @userId;";
-        //     using SqlCommand command = new SqlCommand(cmdText, connection);
-        //     command.Parameters.AddWithValue("@userId", userId);
-        //     using SqlDataReader reader = command.ExecuteReader();
-
-        //     int ticketId = 0;
-        //     DateTime submittedOn = new DateTime();
-
-        //     while (reader.Read())
-        //     {
-        //         ticketId = Convert.ToInt32(reader["ticket_id"]);
-        //         submittedOn = Convert.ToDateTime(reader["submitted_on"]);
-        //     }
-        //     return (ticketId, submittedOn);
-        // }
 
     }
 }
