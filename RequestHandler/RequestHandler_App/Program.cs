@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using RequestHandler_Data;
 using RequestHandler_IO;
 using RequestHandler_Logic;
+using DataTablePrettyPrinter;
 
 namespace RequestHandler_App
 {
@@ -38,6 +39,7 @@ namespace RequestHandler_App
                 bool showMenu = true;
                 while (showMenu)
                 {
+                    Console.Clear();
                     showMenu = EmployeeMenu.empDashboard(currUser);
                     if (!showMenu) Environment.Exit(0);
 
@@ -49,6 +51,7 @@ namespace RequestHandler_App
                 bool showMenu = true;
                 while (showMenu)
                 {
+                    Console.Clear();
                     showMenu = ManagerMenu.mgrDashboard(currUser);
                     if (!showMenu) Environment.Exit(0);
 

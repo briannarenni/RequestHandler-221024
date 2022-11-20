@@ -4,7 +4,7 @@ CREATE TABLE [dbo].[Tickets] (
     [submitted_by] VARCHAR (255) NULL,
     [status]       BIT           DEFAULT (NULL) NULL,
     [amount]       MONEY         NULL,
-    [desc]         INT           NULL
+    [category]         INT           NULL
 );
 GO
 

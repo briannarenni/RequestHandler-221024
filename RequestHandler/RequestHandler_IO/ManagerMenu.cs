@@ -4,12 +4,15 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using RequestHandler_Data;
 using RequestHandler_Logic;
 
 namespace RequestHandler_IO
 {
     public class ManagerMenu
     {
+        static string ticketQuery = @"SELECT * FROM [Ticket] ORDER BY [submitted_on] DESC;";
+
         public static bool mgrDashboard(User currUser)
         {
             // bool loop = true;
@@ -36,12 +39,15 @@ namespace RequestHandler_IO
                 switch (mgrChoice)
                 {
                     case "1":
-                        // viewAllRequests();
-                        Console.Clear();
-                        return true;
+                    // Ticket.showPendingTickets();
+
                     case "2":
-                        // getPendingRequests();
                         Console.Clear();
+                        DataTable results = TicketRepo.getTickets(ticketQuery);
+                        Console.WriteLine("Press any key to continue.");
+                        string ticketViewer = Ticket.showAllTickets(results);
+                        Console.WriteLine(ticketViewer);
+                        Console.ReadLine();
                         return true;
                     case "3":
                         currUser.showUserInfo();

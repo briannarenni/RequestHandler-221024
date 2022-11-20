@@ -11,12 +11,12 @@ namespace RequestHandler_IO
     public class TicketMenu
     {
         // Employee menu methods
-        public static void getTicketHistory(int userId)
+        public static void viewTicketHistory(DataTable userTickets)
         {
-            ;
+
         }
 
-        public void createNewRequest(User currUser)
+        public void newRequest(User currUser)
         {
             ;
         }

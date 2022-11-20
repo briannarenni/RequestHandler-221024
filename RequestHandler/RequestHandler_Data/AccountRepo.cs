@@ -27,12 +27,8 @@ namespace RequestHandler_Data
             command.Parameters.AddWithValue("@username", username);
 
             using SqlDataReader reader = command.ExecuteReader();
-            // while (reader.Read())
-            // {
-            //     return true; // Exists
-            // }
+
             return reader.HasRows;
-            connection.Close();
         }
 
         public static bool checkPassword(string username, string password)
@@ -51,7 +47,6 @@ namespace RequestHandler_Data
             //     return true; // Exists
             // }
             return reader.HasRows;
-            connection.Close();
         }
 
         public static bool getPerms(string username)
@@ -72,7 +67,6 @@ namespace RequestHandler_Data
 
             }
             return isManager;
-            connection.Close();
         }
 
         public static void addUser(string username, string password)
@@ -113,7 +107,6 @@ namespace RequestHandler_Data
                 isManager = isManagerInt % 2 != 0;
             }
             return (userId, isManager);
-            connection.Close();
         }
     }
 

@@ -40,7 +40,7 @@ namespace RequestHandler_IO
                     {
                         var loginInfo = MainMenu.Login();
                         User currUser = new User(loginInfo.Item1, loginInfo.Item2, loginInfo.Item3);
-                        Console.WriteLine($"{currUser.username} logged in successfully.");
+
                         return currUser;
                     }
                     else if (userChoice == "2")
@@ -69,15 +69,39 @@ namespace RequestHandler_IO
             return username;
         }
 
-        public static string getPassword()
+        public static string getPasswordRegister()
         {
             Console.WriteLine("Enter password: ");
             string password = Console.ReadLine();
             return password;
         }
+        public static string getPasswordLogin()
+        {
+            Console.WriteLine("Enter password: ");
+            var password = string.Empty;
+            ConsoleKey key;
+            do
+            {
+                var keyInfo = Console.ReadKey(intercept: true);
+                key = keyInfo.Key;
+
+                if (key == ConsoleKey.Backspace && password.Length > 0)
+                {
+                    Console.Write("\b \b");
+                    password = password[0..^1];
+                }
+                else if (!char.IsControl(keyInfo.KeyChar))
+                {
+                    Console.Write("*");
+                    password += keyInfo.KeyChar;
+                }
+            } while (key != ConsoleKey.Enter);
+            // string password = Console.ReadLine();
+            return password;
+        }
 
         //  LOGIN
-        public static (string, string , bool) Login()
+        public static (string, string, bool) Login()
         {
             Console.WriteLine("Login - Existing User");
             bool usernameLoop = true;
@@ -96,7 +120,7 @@ namespace RequestHandler_IO
                     // break;
                     while (passwordLoop)
                     {
-                        password = MainMenu.getPassword();
+                        password = MainMenu.getPasswordLogin();
                         var matchPassword = AccountRepo.checkPassword(username, password);
                         if (matchPassword)
                         {
@@ -133,7 +157,7 @@ namespace RequestHandler_IO
                 var existingUser = AccountRepo.checkUsername(username);
                 if (!existingUser)
                 {
-                    password = MainMenu.getPassword();
+                    password = MainMenu.getPasswordRegister();
 
 
                     // perms = AccountRepo.getPerms(username);

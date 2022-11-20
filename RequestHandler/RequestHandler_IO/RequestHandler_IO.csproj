@@ -5,6 +5,10 @@
     <ProjectReference Include="..\RequestHandler_Data\RequestHandler_Data.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="DataTablePrettyPrinter" Version="0.2.0" />
+  </ItemGroup>
+
   <PropertyGroup>
     <OutputType>Library</OutputType>
     <TargetFramework>net6.0</TargetFramework>

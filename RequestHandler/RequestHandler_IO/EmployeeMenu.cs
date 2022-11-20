@@ -4,12 +4,17 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DataTablePrettyPrinter;
+using RequestHandler_Data;
 using RequestHandler_Logic;
 
 namespace RequestHandler_IO
 {
     public class EmployeeMenu
     {
+        static string userTicketsQuery = @"SELECT [ticket_id], [submitted_on], [employee_name], [amount], [category], [status] FROM [Ticket] WHERE submitted_by = @userId";
+        static string userPendingQuery = @"SELECT * FROM [View.PendingTickets] WHERE employee_name = @username";
+
         public static bool empDashboard(User currUser)
         {
 
@@ -34,12 +39,15 @@ namespace RequestHandler_IO
                 switch (empChoice)
                 {
                     case "1":
-                        // TicketMenu.createnewRequest();
-                        Console.Clear();
-                        return true;
+                    // newRequest(currUser);
+                    // return true;
                     case "2":
-                        // TicketMenu.getTicketHistory();
                         Console.Clear();
+                        DataTable results = TicketRepo.getTickets(userTicketsQuery, currUser.userId);
+                        Console.WriteLine("Press any key to continue.");
+                        string ticketViewer = Ticket.showUserTickets(results);
+                        Console.WriteLine(ticketViewer);
+                        Console.ReadLine();
                         return true;
                     case "3":
                         currUser.showUserInfo();
@@ -62,7 +70,11 @@ namespace RequestHandler_IO
 
         } // END dashboard
 
+        public static void newRequest(User currUser)
+        {
+            // int userId, string username, decimal amount, string category
 
+        }
 
 
     }
