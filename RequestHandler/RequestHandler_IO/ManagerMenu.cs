@@ -23,7 +23,7 @@ namespace RequestHandler_IO
 
             Console.WriteLine("Choose from menu: ");
 
-            Console.WriteLine("1: Clear Pending Requests");
+            Console.WriteLine("1: Process Pending Requests");
             Console.WriteLine("2: View All Requests");
             Console.WriteLine("3: View Account Information");
             Console.WriteLine("4: Log Out");
@@ -39,7 +39,7 @@ namespace RequestHandler_IO
                 switch (mgrChoice)
                 {
                     case "1":
-                    // Ticket.showPendingTickets();
+                    // Ticket.clearPendingTickets();
 
                     case "2":
                         Console.Clear();
@@ -69,6 +69,11 @@ namespace RequestHandler_IO
             return true;
 
         } // END dashboard
+
+        public void clearPendingTickets()
+        {
+            ;
+        }
 
 
 

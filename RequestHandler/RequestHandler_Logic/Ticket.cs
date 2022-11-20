@@ -15,23 +15,17 @@ namespace RequestHandler_Logic
         public int submittedBy { get; set; }
         public string employeeName { get; set; }
         public string status { get; set; }
-        public decimal amount { get; set; }
+        public double amount { get; set; }
         public string category { get; set; }
 
         // public DataTable ticketViewer { get; set; }
 
-        public Dictionary<int, string> descOptions = new Dictionary<int, string>()
-        {
-            {1, "Travel"},
-            {2, "Lodging"},
-            {3, "Food"},
-            {4, "Other"},
-        };
+
 
         // Constructors
         public Ticket() { }
 
-        public Ticket(int userId, string username, decimal amount, string category)
+        public Ticket(int userId, string username, double amount, string category)
         {
             this.submittedBy = userId;
             this.employeeName = username;
@@ -39,7 +33,7 @@ namespace RequestHandler_Logic
             this.category = category;
         }
 
-        public Ticket(int ticketId, DateTime submittedOn, int userId, string username, decimal amount, string category)
+        public Ticket(int ticketId, DateTime submittedOn, int userId, string username, double amount, string category)
         {
             this.ticketId = ticketId;
             this.submittedOn = submittedOn;
@@ -100,10 +94,10 @@ namespace RequestHandler_Logic
 
         public void showTicketInfo()
         {
-            Console.WriteLine($"Submitted By: {this.submittedBy}");
-            Console.WriteLine($"Status: {this.status}");
-            Console.WriteLine($"Amount requested: {this.amount}");
-            Console.WriteLine($"Request category: {this.category}");
+            Console.WriteLine($"Employee ID: {this.submittedBy}");
+            Console.WriteLine($"Submitted By: {this.employeeName}");
+            Console.WriteLine($"Amount requested: {this.amount.ToString()}");
+            Console.WriteLine($"Reimbursement type: {this.category}");
         }
 
 

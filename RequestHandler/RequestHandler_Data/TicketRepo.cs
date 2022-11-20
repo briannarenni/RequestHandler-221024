@@ -64,7 +64,7 @@ namespace RequestHandler_Data
         }
 
         // Update Methods (add/process requests)
-        public static void addNewTicket(int userId, string username, decimal amount, string category)
+        public static void addNewTicket(int userId, string username, double amount, string category)
         {
             using SqlConnection connection = new SqlConnection(connectionString);
             connection.Open();
@@ -99,28 +99,26 @@ namespace RequestHandler_Data
             connection.Close();
         }
 
+        // public static (int, DateTime) getTicketInfo(int userId)
+        // {
+        //     using SqlConnection connection = new SqlConnection(connectionString);
+        //     connection.Open();
 
-        // ! MAY REMOVE
-        public static (int, DateTime) getTicketInfo(int userId)
-        {
-            using SqlConnection connection = new SqlConnection(connectionString);
-            connection.Open();
+        //     string cmdText = @"SELECT ticket_id, submitted_by FROM [Ticket] WHERE submitted_by = @userId;";
+        //     using SqlCommand command = new SqlCommand(cmdText, connection);
+        //     command.Parameters.AddWithValue("@userId", userId);
+        //     using SqlDataReader reader = command.ExecuteReader();
 
-            string cmdText = @"SELECT ticket_id, submitted_by FROM [Ticket] WHERE submitted_by = @userId;";
-            using SqlCommand command = new SqlCommand(cmdText, connection);
-            command.Parameters.AddWithValue("@userId", userId);
-            using SqlDataReader reader = command.ExecuteReader();
+        //     int ticketId = 0;
+        //     DateTime submittedOn = new DateTime();
 
-            int ticketId = 0;
-            DateTime submittedOn = new DateTime();
-
-            while (reader.Read())
-            {
-                ticketId = Convert.ToInt32(reader["ticket_id"]);
-                submittedOn = Convert.ToDateTime(reader["submitted_on"]);
-            }
-            return (ticketId, submittedOn);
-        }
+        //     while (reader.Read())
+        //     {
+        //         ticketId = Convert.ToInt32(reader["ticket_id"]);
+        //         submittedOn = Convert.ToDateTime(reader["submitted_on"]);
+        //     }
+        //     return (ticketId, submittedOn);
+        // }
 
     }
 }

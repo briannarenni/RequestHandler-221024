@@ -39,8 +39,8 @@ namespace RequestHandler_IO
                 switch (empChoice)
                 {
                     case "1":
-                    // newRequest(currUser);
-                    // return true;
+                        newRequest(currUser);
+                        return true;
                     case "2":
                         Console.Clear();
                         DataTable results = TicketRepo.getTickets(userTicketsQuery, currUser.userId);
@@ -72,7 +72,65 @@ namespace RequestHandler_IO
 
         public static void newRequest(User currUser)
         {
-            // int userId, string username, decimal amount, string category
+            var categories = new Dictionary<int, string>() {
+                {1, "Travel"},
+                {2, "Lodging"},
+                {3, "Food"},
+                {4, "Other"},
+            };
+
+            string category = "";
+            double amount = 00.00;
+
+            Console.Clear();
+            Console.WriteLine("Submit Reimbursement Request");
+            Console.WriteLine();
+
+            bool loop = true;
+            do
+            {
+                Console.Clear();
+                Console.WriteLine("Choose reimbursement type: ");
+                Console.WriteLine("1: Travel");
+                Console.WriteLine("2: Lodging");
+                Console.WriteLine("3: Food");
+                Console.WriteLine("4: Other");
+                var type = Convert.ToInt32(Console.ReadLine());
+
+                if (categories.ContainsKey(type))
+                {
+                    category = categories[type];
+                    Console.WriteLine("Enter amount request, including decimals (00.00 format): ");
+                    amount = Convert.ToDouble(Console.ReadLine());
+                    Ticket newTicket = new Ticket(currUser.userId, currUser.username, amount, category);
+                    Console.WriteLine();
+                    Console.WriteLine("Review submission: (1: Submit | 2: Start Over)");
+                    Console.WriteLine();
+                    Console.WriteLine($"Amount: {newTicket.amount}");
+                    Console.WriteLine($"Reimbursement Type: {newTicket.category}");
+
+                    var input = Convert.ToInt32(Console.ReadLine());
+
+
+                    if (input == 1)
+                    {
+                        TicketRepo.addNewTicket(currUser.userId, currUser.username, newTicket.amount, newTicket.category);
+                        Console.WriteLine("Request submitted successfully");
+                        newTicket.showTicketInfo();
+                        Console.WriteLine("Press any key to continue.");
+                        Console.ReadLine();
+                        loop = false;
+                    }
+                    else if (input == 2)
+                    {
+                        Console.Clear();
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Please enter a valid choice.");
+                }
+            } while (loop);
 
         }
 
