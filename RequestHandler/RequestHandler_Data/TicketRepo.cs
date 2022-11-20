@@ -17,7 +17,11 @@ namespace RequestHandler_Data
         static string connectionString = conFile.ReadToEnd();
 
         // Methods
-        public static void createTicket()
+        // public static void getAllTickets(int userId)
+
+        // public void getPendingTickets(User currUser)
+
+        public static void addNewTicket()
         {
             using SqlConnection connection = new SqlConnection(connectionString);
             connection.Open();
@@ -33,6 +37,13 @@ namespace RequestHandler_Data
             // connection.Close();
         }
 
+        // Manager menu methods
+        // public static void viewAllRequests()
+        // public static void clearPendingRequests()
+
+
+
+        // ! MAY REMOVE
         public static (int, DateTime) getTicketInfo(int userId)
         {
             using SqlConnection connection = new SqlConnection(connectionString);

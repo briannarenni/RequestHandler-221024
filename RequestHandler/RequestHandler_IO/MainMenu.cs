@@ -76,7 +76,7 @@ namespace RequestHandler_IO
             return password;
         }
 
-        // ! LOGIN
+        //  LOGIN
         public static (string, string , bool) Login()
         {
             Console.WriteLine("Login - Existing User");
@@ -118,7 +118,7 @@ namespace RequestHandler_IO
             return (username, password, isManager);
         }
 
-        // ! REGISTER
+        // REGISTER
         public static (string, string) Register()
         {
             Console.WriteLine("Register - New Username");

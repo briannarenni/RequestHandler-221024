@@ -36,11 +36,11 @@ namespace RequestHandler_IO
                 switch (mgrChoice)
                 {
                     case "1":
-                        // clearPendingRequests();
+                        // viewAllRequests();
                         Console.Clear();
                         return true;
                     case "2":
-                        // viewAllRequests();
+                        // getPendingRequests();
                         Console.Clear();
                         return true;
                     case "3":
@@ -63,19 +63,6 @@ namespace RequestHandler_IO
             return true;
 
         } // END dashboard
-
-
-        // TODO: Ticket System
-        public void clearPendingRequests()
-        {
-            ;
-        }
-
-        public void viewAllRequests()
-        {
-            ;
-        }
-
 
 
 

@@ -10,22 +10,24 @@ namespace RequestHandler_IO
 {
     public class TicketMenu
     {
-        public static void createTicket()
+        // Employee menu methods
+        public static void getTicketHistory(int userId)
         {
             ;
         }
 
-        public static void viewUserTickets()
+        public void createNewRequest(User currUser)
+        {
+            ;
+        }
+
+        // Manager menu methods
+        public static void viewAllRequests()
         {
             ;
         }
 
         public static void clearPendingRequests()
-        {
-            ;
-        }
-
-        public static void viewAllRequests()
         {
             ;
         }

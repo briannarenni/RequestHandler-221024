@@ -34,11 +34,11 @@ namespace RequestHandler_IO
                 switch (empChoice)
                 {
                     case "1":
-                        // TicketMenu.createTicket();
+                        // TicketMenu.createnewRequest();
                         Console.Clear();
                         return true;
                     case "2":
-                        // TicketMenu.viewUserTickets();
+                        // TicketMenu.getTicketHistory();
                         Console.Clear();
                         return true;
                     case "3":
@@ -64,15 +64,6 @@ namespace RequestHandler_IO
 
 
 
-        // TODO: Ticket System
-        public void viewUserTickets()
-        {
-            ;
-        }
 
-        public void createTicket(User currUser)
-        {
-            ;
-        }
     }
 }
