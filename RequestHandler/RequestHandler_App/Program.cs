@@ -36,7 +36,7 @@ namespace RequestHandler_App
             // ! Employee Menu
             if (!currUser.isManager)
             {
-                Console.ForegroundColor = ConsoleColor.DarkYellow;
+                Console.ForegroundColor = ConsoleColor.Yellow;
                 Console.WriteLine($"Welcome, {currUser.username}");
                 Console.ResetColor();
 
@@ -52,7 +52,7 @@ namespace RequestHandler_App
 
             else if (currUser.isManager) // ! Manager Menu
             {
-                Console.ForegroundColor = ConsoleColor.DarkYellow;
+                Console.ForegroundColor = ConsoleColor.Yellow;
                 Console.WriteLine($"Welcome, {currUser.username}");
                 Console.ResetColor();
 

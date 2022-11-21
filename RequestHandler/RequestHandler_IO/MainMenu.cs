@@ -16,17 +16,19 @@ namespace RequestHandler_IO
         {
             bool choiceLoop = true;
 
-            Console.ForegroundColor = ConsoleColor.DarkYellow;
+            Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine();
             Console.WriteLine("Employee Request Portal - Main Menu");
             Console.WriteLine();
+
+            Console.ForegroundColor = ConsoleColor.DarkYellow;
             Console.WriteLine("Please choose an option:");
             Console.ResetColor();
 
             while (choiceLoop)
             {
                 string userChoice;
-                Console.ForegroundColor = ConsoleColor.Green;
+                Console.ForegroundColor = ConsoleColor.Blue;
                 Console.WriteLine("1: Login (Existing User)");
                 Console.WriteLine("2: Register (New User)");
                 Console.ResetColor();
@@ -43,16 +45,21 @@ namespace RequestHandler_IO
                     {
                         var loginInfo = MainMenu.Login();
                         User currUser = new User(loginInfo.Item1, loginInfo.Item2, loginInfo.Item3);
-
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        Console.WriteLine();
+                        Console.WriteLine($"Logging in...");
+                        Thread.Sleep(2000);
+                        Console.ResetColor();
                         return currUser;
                     }
                     else if (userChoice == "2")
                     {
                         var registerInfo = MainMenu.Register();
                         User currUser = new User(registerInfo.Item1, registerInfo.Item2);
-                        Console.ForegroundColor = ConsoleColor.DarkYellow;
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        Console.WriteLine();
                         Console.WriteLine($"{currUser.username} registered in successfully. Logging in...");
-                        Thread.Sleep(1500);
+                        Thread.Sleep(2000);
                         Console.ResetColor();
                         return currUser;
                     }
@@ -60,7 +67,7 @@ namespace RequestHandler_IO
                 else
                 {
                     Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine("Error: Please enter a number.");
+                    Console.WriteLine("Error: Please enter a valid choice.");
                     Console.ResetColor();
                 }
 
@@ -73,7 +80,7 @@ namespace RequestHandler_IO
 
         public static string getUsername()
         {
-            Console.ForegroundColor = ConsoleColor.DarkYellow;
+            Console.ForegroundColor = ConsoleColor.Blue;
             Console.WriteLine("Enter username: ");
             Console.ResetColor();
             string username = Console.ReadLine();
@@ -82,7 +89,7 @@ namespace RequestHandler_IO
 
         public static string getPasswordRegister()
         {
-            Console.ForegroundColor = ConsoleColor.DarkYellow;
+            Console.ForegroundColor = ConsoleColor.Blue;
             Console.WriteLine("Enter password: ");
             Console.ResetColor();
             string password = Console.ReadLine();
@@ -90,7 +97,7 @@ namespace RequestHandler_IO
         }
         public static string getPasswordLogin()
         {
-            Console.ForegroundColor = ConsoleColor.DarkYellow;
+            Console.ForegroundColor = ConsoleColor.Blue;
             Console.WriteLine("Enter password: ");
             var password = string.Empty;
             ConsoleKey key;
@@ -118,7 +125,7 @@ namespace RequestHandler_IO
         //  LOGIN
         public static (string, string, bool) Login()
         {
-            Console.ForegroundColor = ConsoleColor.DarkYellow;
+            Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine("Login - Existing User");
             bool usernameLoop = true;
             bool passwordLoop = true;
@@ -147,7 +154,8 @@ namespace RequestHandler_IO
                         else
                         {
                             Console.ForegroundColor = ConsoleColor.Red;
-                            Console.WriteLine("Incorrect password.");
+                            Console.WriteLine();
+                            Console.WriteLine("Error: Password incorrect.");
                             Console.ResetColor();
                         }
                     }
@@ -155,7 +163,7 @@ namespace RequestHandler_IO
                 else
                 {
                     Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine("Username not found.");
+                    Console.WriteLine("Error: Username not found.");
                     Console.ResetColor();
                 }
             }
@@ -166,7 +174,7 @@ namespace RequestHandler_IO
         // REGISTER
         public static (string, string) Register()
         {
-            Console.ForegroundColor = ConsoleColor.DarkYellow;
+            Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine("Register - New Username");
             bool registerLoop = true;
             string username = "";
@@ -188,7 +196,7 @@ namespace RequestHandler_IO
                 else
                 {
                     Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine("Error, username already exists.");
+                    Console.WriteLine("Error: Username already exists.");
                     Console.ResetColor();
                 }
             }

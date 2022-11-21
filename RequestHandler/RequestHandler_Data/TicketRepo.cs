@@ -114,16 +114,12 @@ namespace RequestHandler_Data
             using SqlConnection connection = new SqlConnection(connectionString);
             connection.Open();
 
-            string cmdText = @"UPDATE [Ticket] SET
-                status = @status
-                processed_by = @username
-                WHERE ticket_id = @id;";
+            string cmdText = @"UPDATE [Ticket] SET status = @status WHERE ticket_id = @id;";
 
             using SqlCommand command = new SqlCommand(cmdText, connection);
 
             command.Parameters.AddWithValue("@status", status);
             command.Parameters.AddWithValue("@id", id);
-            command.Parameters.AddWithValue("@username", username);
 
             command.ExecuteNonQuery();
             connection.Close();

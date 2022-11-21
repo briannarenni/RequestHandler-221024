@@ -17,18 +17,19 @@ namespace RequestHandler_IO
 
         public static bool mgrDashboard(User currUser)
         {
-            Console.ForegroundColor = ConsoleColor.DarkYellow;
+            Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine("Manager Request Dashboard:");
+            Console.ForegroundColor = ConsoleColor.DarkYellow;
             Console.WriteLine($"Welcome, {currUser.username}");
             Console.WriteLine();
-
             Console.WriteLine("Choose from menu: ");
 
-            Console.ResetColor();
+            Console.ForegroundColor = ConsoleColor.Blue;
             Console.WriteLine("1: Process Pending Requests");
             Console.WriteLine("2: View All Requests");
             Console.WriteLine("3: View Account Information");
             Console.WriteLine("4: Log Out");
+            Console.ResetColor();
 
             // Validate input
             string mgrChoice = Console.ReadLine();
@@ -70,7 +71,7 @@ namespace RequestHandler_IO
                         return Validation.logOut();
                     default:
                         Console.ForegroundColor = ConsoleColor.Red;
-                        Console.WriteLine("Error, enter option number.");
+                        Console.WriteLine("Error: Invalid entry.");
                         Console.ResetColor();
                         return true;
                 }
@@ -78,7 +79,7 @@ namespace RequestHandler_IO
             else
             {
                 Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("Please try again...");
+                Console.WriteLine("Error: Invalid entry.");
                 Console.ResetColor();
             }
             return true;
@@ -91,16 +92,16 @@ namespace RequestHandler_IO
                 { 1, "approved" },
                 { 2, "denied" },
             };
-            // if ticket id is entered, process it
-            // if an empty string is entered, exit method completely
+
             bool majorLoop = true;
-            while (majorLoop) // ? do i need a loop???
+            while (majorLoop)
             {
                 Console.Clear();
-                Console.ForegroundColor = ConsoleColor.DarkYellow;
+                Console.ForegroundColor = ConsoleColor.Yellow;
                 Console.WriteLine("Process Pending Requests");
-                Console.ForegroundColor = ConsoleColor.Green;
+                Console.ForegroundColor = ConsoleColor.Blue;
                 Console.WriteLine("To approve/deny an open request, enter a Ticket ID: ");
+                Console.ForegroundColor = ConsoleColor.DarkYellow;
                 Console.WriteLine("To go back the the main menu, press Enter");
                 Console.ResetColor();
 
@@ -125,10 +126,10 @@ namespace RequestHandler_IO
                     {
                         DataTable result = TicketRepo.getTickets(singlePendingQuery, ticketID);
                         string singleViewer = Ticket.showAllTickets(result);
-                        Console.ForegroundColor = ConsoleColor.Green;
-                        Console.WriteLine("1: Approve Request");
-                        Console.WriteLine("2: Deny Request");
-                        Console.WriteLine("3: Go Back");
+                        Console.ForegroundColor = ConsoleColor.Blue;
+                        Console.WriteLine("1: Approve Request        2: Deny Request        3: Go Back");
+                        // Console.WriteLine("2: Deny Request");
+                        // Console.WriteLine("3: Go Back");
                         Console.ResetColor();
 
                         int input = Convert.ToInt32(Console.ReadLine());
@@ -138,16 +139,19 @@ namespace RequestHandler_IO
                             {
                                 case 1:
                                 case 2:
-                                    Console.ForegroundColor = ConsoleColor.DarkYellow;
+                                    Console.ForegroundColor = ConsoleColor.Green;
                                     TicketRepo.updatePendingRequest(status[input], ticketID, currUser.username);
                                     Console.WriteLine($"Processing successful: Request {status[input]}");
+                                    Console.WriteLine();
+
+                                    Console.ForegroundColor = ConsoleColor.DarkYellow;
                                     Console.WriteLine("Press any key to continue: ");
                                     Console.ReadLine();
                                     Console.ResetColor();
                                     break;
                                 default:
                                     Console.ForegroundColor = ConsoleColor.Red;
-                                    Console.WriteLine("Error, selection not valid.");
+                                    Console.WriteLine("Error: Invalid entry.");
                                     majorLoop = false;
                                     Console.ResetColor();
                                     break;
@@ -156,14 +160,14 @@ namespace RequestHandler_IO
                         else
                         {
                             Console.ForegroundColor = ConsoleColor.Red;
-                            Console.WriteLine("Please choose a status number.");
+                            Console.WriteLine("Error: Please enter status number.");
                             Console.ResetColor();
                         }
                     } //doesn't exist
                     else
                     {
                         Console.ForegroundColor = ConsoleColor.Red;
-                        Console.WriteLine("Error, ticket id doesn't exist.");
+                        Console.WriteLine("Error: Invalid ticket ID.");
                         Console.ResetColor();
                     }
 
