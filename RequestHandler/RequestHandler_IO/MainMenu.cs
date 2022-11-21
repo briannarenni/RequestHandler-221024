@@ -34,6 +34,7 @@ namespace RequestHandler_IO
                 Console.ResetColor();
 
                 userChoice = Console.ReadLine();
+                Console.Clear();
                 bool emptyStr = string.IsNullOrEmpty(userChoice);
 
                 if ((!emptyStr) && userChoice == "1" || userChoice == "2")
