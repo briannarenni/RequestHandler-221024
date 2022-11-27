@@ -1,5 +1,7 @@
 SELECT * FROM [User]
+
 SELECT * FROM [Ticket]
+
 SELECT * FROM [View.PendingTickets]
 
 

@@ -103,6 +103,7 @@ namespace RequestHandler_IO
             var password = string.Empty;
             ConsoleKey key;
             Console.ResetColor();
+
             do
             {
                 var keyInfo = Console.ReadKey(intercept: true);
@@ -119,7 +120,7 @@ namespace RequestHandler_IO
                     password += keyInfo.KeyChar;
                 }
             } while (key != ConsoleKey.Enter);
-            // string password = Console.ReadLine();
+
             return password;
         }
 
@@ -150,7 +151,6 @@ namespace RequestHandler_IO
                         if (matchPassword)
                         {
                             passwordLoop = false;
-                            isManager = AccountRepo.getPerms(username);
                         }
                         else
                         {
