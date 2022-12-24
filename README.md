@@ -1,2 +1,5 @@
-# RequestHandler-221024
-Console ticketing system, project 1 for 221024
+# Employee Request Console App
+## Basic ticketing system 
+
+Standalone app connected to a DB where employees can submit reimbursement requests, and managers can approve/deny them.
+
